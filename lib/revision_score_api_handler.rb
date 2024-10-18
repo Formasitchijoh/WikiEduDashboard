@@ -76,9 +76,10 @@ class RevisionScoreApiHandler
       else
         # For other wikis, 'features' has to contain the reference-counter scores if
         # different from nil. Otherwise, it should be nil.
-        score.fetch('num_ref').nil? ? nil : { 'num_ref' => score['num_ref'] }
+        num_ref = score.fetch('num_ref', nil)
+        result = num_ref.nil? ? nil : { 'num_ref' => num_ref }
+        result
       end
-
     completed_score
   end
 
